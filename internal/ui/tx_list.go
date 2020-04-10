@@ -99,24 +99,24 @@ func (m *TxListModel) data(index *core.QModelIndex, role int) *core.QVariant {
 
 	if role == int(From) {
 		if address, err := common.NewMixedcaseAddressFromString(item.From); err != nil {
-			return core.NewQVariant15(item.From)
+			return core.NewQVariant1(item.From)
 		} else {
-			return core.NewQVariant15(address.Original())
+			return core.NewQVariant1(address.Original())
 
 		}
 	}
 	if role == int(Method) {
-		return core.NewQVariant15(item.Description)
+		return core.NewQVariant1(item.Description)
 	}
 	if role == int(FromSrc) {
 		if addr, err := common.NewMixedcaseAddressFromString(item.From); err != nil {
-			return core.NewQVariant15("")
+			return core.NewQVariant1("")
 		} else {
-			return core.NewQVariant15(identicon.ToBase64Img(addr.Address()))
+			return core.NewQVariant1(identicon.ToBase64Img(addr.Address()))
 		}
 	}
 	if role == int(IsUnknown) {
-		return core.NewQVariant5(item.IsUnknown)
+		return core.NewQVariant1(item.IsUnknown)
 	}
 	return core.NewQVariant()
 }
