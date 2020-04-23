@@ -39,24 +39,24 @@ type clefUIAPI struct {
 	ui ui.ClefUI
 }
 
-func (c *clefUIAPI) ui_onSignerStartup(info core.StartupInfo) {
+func (c *clefUIAPI) OnSignerStartup(info core.StartupInfo) {
 	fmt.Printf("clefService.OnSignerStartup sending signal \n")
 	c.ui.BackToMain <- true
 }
 
-func (c *clefUIAPI) ui_showError(message core.Message) {
+func (c *clefUIAPI) ShowError(message core.Message) {
 
 	text := strings.Replace(message.Text, "\u003c", "less than ", -1)
 	c.ui.ErrorDialog <- text
 }
 
-func (c *clefUIAPI) ui_showInfo(message core.Message) {
+func (c *clefUIAPI) ShowInfo(message core.Message) {
 	// TODO! Separate info and error
 	text := strings.Replace(message.Text, "\u003c", "less than ", -1)
 	c.ui.ErrorDialog <- text
 }
 
-func (c *clefUIAPI) ui_onInputRequired(message core.UserInputRequest) (*core.UserInputResponse, error) {
+func (c *clefUIAPI) OnUserInputrequest(message core.UserInputRequest) (*core.UserInputResponse, error) {
 	response, err := c.ui.RequestUserInput(message.Title, message.Prompt, message.IsPassword)
 	if err != nil {
 		return nil, err
@@ -67,7 +67,7 @@ func (c *clefUIAPI) ui_onInputRequired(message core.UserInputRequest) (*core.Use
 
 }
 
-func (c *clefUIAPI) ui_approveNewAccount(p core.NewAccountRequest) (response *core.NewAccountResponse, err error) {
+func (c *clefUIAPI) ApproveNewAccount(p core.NewAccountRequest) (response *core.NewAccountResponse, err error) {
 	ch := make(chan *core.NewAccountResponse)
 	item := ui.IncomingRequestItem{
 		From:        " - ",
@@ -83,7 +83,7 @@ func (c *clefUIAPI) ui_approveNewAccount(p core.NewAccountRequest) (response *co
 	return r, nil
 }
 
-func (c *clefUIAPI) ui_approveTx(p core.SignTxRequest) (*core.SignTxResponse, error) {
+func (c *clefUIAPI) ApproveTx(p core.SignTxRequest) (*core.SignTxResponse, error) {
 	val := big.Int(p.Transaction.Value)
 	desc := fmt.Sprintf("Transaction: %s to 0x%x... ",
 		clefutils.DefaultFormat(&val),
@@ -112,7 +112,7 @@ func (c *clefUIAPI) ui_approveTx(p core.SignTxRequest) (*core.SignTxResponse, er
 	return response, nil
 }
 
-func (c *clefUIAPI) ui_approveListing(p core.ListRequest) (*core.ListResponse, error) {
+func (c *clefUIAPI) ApproveListing(p core.ListRequest) (*core.ListResponse, error) {
 	ch := make(chan *core.ListResponse)
 	desc := "Request to list accounts"
 	if len(p.Meta.Origin) > 0 {
@@ -138,6 +138,6 @@ func (c *clefUIAPI) ui_approveListing(p core.ListRequest) (*core.ListResponse, e
 	return response, nil
 }
 
-func (c *clefUIAPI) ui_approveSignData(p *core.SignDataRequest) (*core.SignDataResponse, error) {
+func (c *clefUIAPI) ApproveSignData(p *core.SignDataRequest) (*core.SignDataResponse, error) {
 	return nil, fmt.Errorf("Not implemented")
 }
