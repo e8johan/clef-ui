@@ -68,16 +68,13 @@ func (c *ClefUI) hideAll() {
 
 // RequestUserInput synchronously asks for user input
 func (c *ClefUI) RequestUserInput(title, message string, isPassword bool) (string, error) {
-	ok := false
-	echoMode := widgets.QLineEdit__Password
-	if !isPassword {
-		echoMode = widgets.QLineEdit__Normal
-	}
-	response := widgets.QInputDialog_GetText(nil, title, message, echoMode, "",
-		&ok, core.Qt__Dialog, core.Qt__ImhNone)
-	if ok {
-		return response, nil
-	}
+    c.approvetx.ShowDialogRequest(title, message, isPassword)
+    res := <- c.approvetx.ContextObject.dialogResultChan
+    
+    if res.result {
+        return res.value, nil
+    }
+    
 	return "", fmt.Errorf("no input provided")
 }
 

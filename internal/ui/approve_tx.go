@@ -29,6 +29,11 @@ type diff struct {
 	edited   string
 }
 
+type DialogResultType struct {
+    result bool
+    value  string
+}
+
 type ApproveTxContext struct {
 	ContextObject *ApproveTxCtx
 }
@@ -58,6 +63,14 @@ type ApproveTxCtx struct {
 	_ string `property:"fromSrc"`
 	_ string `property:"toSrc"`
 	_ string `property:"diff"`
+	
+	_ string `property:"dialogTitle"`
+	_ string `property:"dialogMessage"`
+	_ bool   `property:"dialogIsPassword"`
+	_ func() `signal:"showDialog"`
+	_ func(result bool, value string) `signal:"dialogResult,auto"`
+	
+	dialogResultChan chan DialogResultType
 
 	_ func()                   `signal:"approve,auto"`
 	_ func()                   `signal:"reject,auto"`
@@ -77,6 +90,19 @@ func (t *ApproveTxCtx) init() {
 	t.formData = core2.SendTxArgs{}
 	t.SetValueUnit(GWEI)
 	t.SetGasPriceUnit(GWEI)
+}
+
+func (t *ApproveTxContext) ShowDialogRequest(title, message string, isPassword bool) {
+    c := t.ContextObject
+    c.SetDialogTitle(title)
+    c.SetDialogMessage(message)
+    c.SetDialogIsPassword(isPassword)
+    go c.ShowDialog()
+}
+
+func (c *ApproveTxCtx) dialogResult(result bool, value string) {
+    r := DialogResultType{result: result, value: value}
+    c.dialogResultChan <- r
 }
 
 func (t *ApproveTxCtx) SetTransaction(tx core2.SendTxArgs) {
@@ -380,6 +406,7 @@ func NewApproveTxUI(rootContext *qml.QQmlContext, clefUi *ClefUI) *ApproveTxCont
 	c := NewApproveTxCtx(nil)
 	c.ClefUI = clefUi
 	c.answerCh = make(chan int)
+	c.dialogResultChan = make(chan DialogResultType)
 
 // 	widget := quick.NewQQuickWidget(nil)
     rootContext.SetContextProperty("ctxObjectApproveTx", c)
@@ -389,5 +416,4 @@ func NewApproveTxUI(rootContext *qml.QQmlContext, clefUi *ClefUI) *ApproveTxCont
 	return &ApproveTxContext{
 		ContextObject: c,
 	}
-
 }

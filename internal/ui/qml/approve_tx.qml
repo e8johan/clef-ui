@@ -1,6 +1,7 @@
 import QtQuick 2.4
 import QtQuick.Controls 2.3
 import QtQuick.Controls.Private 1.0
+import QtQuick.Dialogs 1.3
 
 Item {
     id: approvetx
@@ -846,5 +847,57 @@ Item {
                 }
             }
         }
+    }
+    
+    Connections {
+        target: ctxObjectApproveTx
+        onShowDialog: {
+            console.log("Showing " + ctxObjectApproveTx.dialogTitle);
+            if (inputDialog.visible) {
+                console.log("Error: dialog already visible!");
+            } else {
+                inputDialog.title = ctxObjectApproveTx.dialogTitle;
+                inputDialog.text = ctxObjectApproveTx.dialogMessage;
+                inputDialog.isPassword = ctxObjectApproveTx.dialogIsPassword
+                inputDialog.input = '';
+                inputDialog.open();
+            }
+        }
+    }
+
+    Dialog {
+        id: inputDialog
+        
+        property alias text : inputDialogText.text
+        property alias input : inputDialogTextField.text
+        property alias isPassword : inputDialogTextField.isPassword
+        
+        standardButtons: StandardButton.Ok | StandardButton.Cancel
+        
+        Column {
+            anchors.fill: parent
+
+            Text {
+                id: inputDialogText
+                height: 40
+            }
+            
+            TextField {
+                id: inputDialogTextField
+                
+                property bool isPassword: false
+                echoMode: isPassword ? TextInput.Password : TextInput.Normal
+                
+                width: parent.width*0.8
+                height: 40
+            }
+        }
+        
+        onVisibleChanged: {
+            if (visible)
+                inputDialogTextField.focus = true;
+        }
+        onAccepted: ctxObjectApproveTx.dialogResult(true, inputDialog.input)
+        onRejected: ctxObjectApproveTx.dialogResult(false, '')
     }
 }
