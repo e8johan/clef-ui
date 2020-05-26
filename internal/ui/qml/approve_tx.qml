@@ -10,10 +10,10 @@ Item {
     function setUnit(field, unitIndex) {
         switch(field) {
         case "VALUE":
-            ctxObject.changeValueUnit(unitIndex)
+            ctxObjectApproveTx.changeValueUnit(unitIndex)
             return;
         case "GAS_PRICE":
-            ctxObject.changeGasPriceUnit(unitIndex)
+            ctxObjectApproveTx.changeGasPriceUnit(unitIndex)
             return;
         }
     }
@@ -59,22 +59,22 @@ Item {
                 y: 18
                 width: 342
                 height: 24
-                color: ctxObject.fromVisible ? "#fff1b7" : "#efefef"
+                color: ctxObjectApproveTx.fromVisible ? "#fff1b7" : "#efefef"
                 radius: 2
                 border.width: 1
-                border.color: ctxObject.fromVisible ? "#ffda3f" : "#efefef"
+                border.color: ctxObjectApproveTx.fromVisible ? "#ffda3f" : "#efefef"
                 TextInput {
                     id: textInput
                     x: 4
                     y: 7
                     width: parent.width - 8
                     height: parent.height - 12
-                    text: ctxObject.from
+                    text: ctxObjectApproveTx.from
                     font.family: "Courier"
                     horizontalAlignment: Text.AlignLeft
                     verticalAlignment: Text.AlignHCenter
                     font.pixelSize: 12
-                    onTextChanged: ctxObject.edited("from", text)
+                    onTextChanged: ctxObjectApproveTx.edited("from", text)
                 }
             }
 
@@ -85,7 +85,7 @@ Item {
                 width: 36
                 height: 36
                 fillMode: Image.Stretch
-                source: ctxObject.fromSrc
+                source: ctxObjectApproveTx.fromSrc
                 //                source: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAaQAAAGkCAMAAABJkqEHAAAABlBMVEXw8PAt1X4FwF7+AAAFW0lEQVR4nOzcsZUgKRBEwTv/nV59Xyvs8Cg+E+FAVpIt938AAAAAAAAAAAAAAAAAAPzU/wdMd/wWah46dbNQ89Cpm4Wah07dLNQ8dOpmoeahUzcLNQ+dulmoeejUzULNQ6duFmoeOnWzUPPQqZuFmodO3SzUPHTqZqHmoVM3CzUPnbpZqHno1M1CzUOnbhZqHjp1s1Dz0KmbhZqHTt0s1Dx06mah5qFTNws1D526Wah56NTNQs1Dp24Wah46dbNQ89Cpm4Wah07dLNQ8dOpmoeahUzcLNQ+dulmoeejUzULNQ6duFmoeOnWzUPPQqZuFmodO3SzUPHTqZqHmoVM3CzUPnbpZqHno1M1CzUOnbhZqHjp1s1Dz0KmbhZqHTt0s1Dx06mah5qFTNws1D526Wah56NTNQs1Dp24Wah46dbNQ8xOn/l5GCjBSgJECjBRgpAAjBRgpwEgBRgowUoCRAowUYKQAIwUYKcBIAUYKMFKAkQKMFGCkACMFGCnASAFGCjBSgJECjBRgpAAjBRgpwEgBRgowUoCRAowUYKQAIwUYKcBIAUYKMFKAkQKMFGCkACMFGCnASAFGChgb6ZUP4c63GgtezzjhzrcaC17POOHOtxoLXs844c63GgtezzjhzrcaC17POOHOtxoLXs844c63GgtezzjhzrcaC17POOHOtxoLXs844c63GgtezzjhzrcaC17POOHOtxoLXs844c63GgtezzjhzrcaC17POOHOtxoLXs844c63GgtezzjhzrcaC17POOHOtxoLXs844c63GgtezzjhzrcaC17POOHOtxoLXs844c63GgtezzjhzrcaC17POOHOtxoLXs844c63GgtezzjhzrcaC17POOHOtxoLXs844c63GgtezzjhzrcaC17POOHOtxoLXs844c63GgtezzjhzrcaC17POOHOtxoLXs844c63GgtezzjhzrcaC17POOHOtxoLXs844c63GgtezzjhzrcaC17POOHOtxoLXs844c63GgtezzjhzrcaC17POOHOtxoLXs844c63GgtezzjhzrcaC17POOHOtxoLXs844c63GgtezzjhzrcaC17POOHOtxoLXs844c63GgtezzjhzrcCAAAAAAAAAAAAAAAAAAAAAAAAAIC/+PVmgJECjBRgpAAjBRgpwEgBRgowUoCRAowUYKQAIwUYKcBIAUYKMFKAkQKMFGCkACMFGCnASAFGCjBSgJECjBRgpAAjBRgpwEgBRgowUoCRAowUYKQAIwUYKcBIAUYKMFKAkQKMFGCkACMFGCnASAFGCjBSgJF+aL3cCb+3x9Plpi/+ZqQnezxdbvrib0Z6ssfT5aYv/makJ3s8XW764m9GerLH0+WmL/5mpCd7PF1u+uJvRnqyx9Plpi/+ZqQnezxdbvrib0Z6ssfT5aYv/makJ3s8XW764m9GerLH0+WmL/5mpCd7PF1u+uJvRnqyx9Plpi/+ZqQnezxdbvrib0Z6ssfT5aYv/makJ3s8XW764m9GerLH0+WmL/5mpCd7PF1u+uJvRnqyx9Plpi/+ZqQnezxdbvrib0Z6ssfT5aYv/makJ3s8XW764m9GerLH0+WmL/5mpCd7PF1u+uJvRnqyx9Plpi/+tmmkE06Ue/oBTzBSgJECjBRgpAAjBRgpwEgBRgowUoCRAowUYKQAIwUYKcBIAUYKMFKAkQKMFGCkACMFGCnASAFGCjBSgJECjBRgpAAjBRgpwEgBRgowUoCRAowUYKQAIwUYKcBIAUYKMFKAkQKMFGCkACMFGCnASAFGCjASAAAAAAAAAAAAAAAAAAD/6k8AAAD//6Wc/enO7LAAAAAAAElFTkSuQmCC"
             }
 
@@ -95,7 +95,7 @@ Item {
                 y: 58
                 width: 36
                 height: 36
-                source: ctxObject.toSrc
+                source: ctxObjectApproveTx.toSrc
                 //                source: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAaQAAAGkCAMAAABJkqEHAAAABlBMVEXw8PAt1X4FwF7+AAAFW0lEQVR4nOzcsZUgKRBEwTv/nV59Xyvs8Cg+E+FAVpIt938AAAAAAAAAAAAAAAAAAPzU/wdMd/wWah46dbNQ89Cpm4Wah07dLNQ8dOpmoeahUzcLNQ+dulmoeejUzULNQ6duFmoeOnWzUPPQqZuFmodO3SzUPHTqZqHmoVM3CzUPnbpZqHno1M1CzUOnbhZqHjp1s1Dz0KmbhZqHTt0s1Dx06mah5qFTNws1D526Wah56NTNQs1Dp24Wah46dbNQ89Cpm4Wah07dLNQ8dOpmoeahUzcLNQ+dulmoeejUzULNQ6duFmoeOnWzUPPQqZuFmodO3SzUPHTqZqHmoVM3CzUPnbpZqHno1M1CzUOnbhZqHjp1s1Dz0KmbhZqHTt0s1Dx06mah5qFTNws1D526Wah56NTNQs1Dp24Wah46dbNQ8xOn/l5GCjBSgJECjBRgpAAjBRgpwEgBRgowUoCRAowUYKQAIwUYKcBIAUYKMFKAkQKMFGCkACMFGCnASAFGCjBSgJECjBRgpAAjBRgpwEgBRgowUoCRAowUYKQAIwUYKcBIAUYKMFKAkQKMFGCkACMFGCnASAFGChgb6ZUP4c63GgtezzjhzrcaC17POOHOtxoLXs844c63GgtezzjhzrcaC17POOHOtxoLXs844c63GgtezzjhzrcaC17POOHOtxoLXs844c63GgtezzjhzrcaC17POOHOtxoLXs844c63GgtezzjhzrcaC17POOHOtxoLXs844c63GgtezzjhzrcaC17POOHOtxoLXs844c63GgtezzjhzrcaC17POOHOtxoLXs844c63GgtezzjhzrcaC17POOHOtxoLXs844c63GgtezzjhzrcaC17POOHOtxoLXs844c63GgtezzjhzrcaC17POOHOtxoLXs844c63GgtezzjhzrcaC17POOHOtxoLXs844c63GgtezzjhzrcaC17POOHOtxoLXs844c63GgtezzjhzrcaC17POOHOtxoLXs844c63GgtezzjhzrcaC17POOHOtxoLXs844c63GgtezzjhzrcaC17POOHOtxoLXs844c63GgtezzjhzrcaC17POOHOtxoLXs844c63GgtezzjhzrcCAAAAAAAAAAAAAAAAAAAAAAAAAIC/+PVmgJECjBRgpAAjBRgpwEgBRgowUoCRAowUYKQAIwUYKcBIAUYKMFKAkQKMFGCkACMFGCnASAFGCjBSgJECjBRgpAAjBRgpwEgBRgowUoCRAowUYKQAIwUYKcBIAUYKMFKAkQKMFGCkACMFGCnASAFGCjBSgJF+aL3cCb+3x9Plpi/+ZqQnezxdbvrib0Z6ssfT5aYv/makJ3s8XW764m9GerLH0+WmL/5mpCd7PF1u+uJvRnqyx9Plpi/+ZqQnezxdbvrib0Z6ssfT5aYv/makJ3s8XW764m9GerLH0+WmL/5mpCd7PF1u+uJvRnqyx9Plpi/+ZqQnezxdbvrib0Z6ssfT5aYv/makJ3s8XW764m9GerLH0+WmL/5mpCd7PF1u+uJvRnqyx9Plpi/+ZqQnezxdbvrib0Z6ssfT5aYv/makJ3s8XW764m9GerLH0+WmL/5mpCd7PF1u+uJvRnqyx9Plpi/+tmmkE06Ue/oBTzBSgJECjBRgpAAjBRgpwEgBRgowUoCRAowUYKQAIwUYKcBIAUYKMFKAkQKMFGCkACMFGCnASAFGCjBSgJECjBRgpAAjBRgpwEgBRgowUoCRAowUYKQAIwUYKcBIAUYKMFKAkQKMFGCkACMFGCnASAFGCjASAAAAAAAAAAAAAAAAAAD/6k8AAAD//6Wc/enO7LAAAAAAAElFTkSuQmCC"
                 fillMode: Image.Stretch
             }
@@ -107,7 +107,7 @@ Item {
                 width: 303
                 height: 10
                 color: "#e4b409"
-                text: ctxObject.fromWarning
+                text: ctxObjectApproveTx.fromWarning
                 horizontalAlignment: Text.AlignRight
                 font.capitalization: Font.AllUppercase
                 font.family: "Verdana"
@@ -121,7 +121,7 @@ Item {
                 y: 58
                 width: 303
                 height: 10
-                text: ctxObject.toWarning
+                text: ctxObjectApproveTx.toWarning
                 color: "#e4b409"
                 font.family: "Verdana"
                 verticalAlignment: Text.AlignVCenter
@@ -136,10 +136,10 @@ Item {
             x: 0
             y: 625
             onApprove: {
-                ctxObject.approve()
+                ctxObjectApproveTx.approve()
             }
             onReject: {
-                ctxObject.reject()
+                ctxObjectApproveTx.reject()
             }
         }
 
@@ -170,23 +170,23 @@ Item {
                 width: 342
                 height: 24
                 //                color: ctxObject.toInputBgColor
-                color: ctxObject.toVisible ? "#fff1b7" : "#efefef"
+                color: ctxObjectApproveTx.toVisible ? "#fff1b7" : "#efefef"
                 radius: 2
                 border.width: 1
                 //                border.color: ctxObject.toInputBorderColor
-                border.color: ctxObject.toVisible ? "#ffda3f" : "#efefef"
+                border.color: ctxObjectApproveTx.toVisible ? "#ffda3f" : "#efefef"
                 TextInput {
                     id: textInput1
                     x: 4
                     y: 7
                     width: parent.width - 8
                     height: parent.height - 12
-                    text: ctxObject.to
+                    text: ctxObjectApproveTx.to
                     font.pixelSize: 12
                     horizontalAlignment: Text.AlignLeft
                     font.family: "Courier"
                     verticalAlignment: Text.AlignHCenter
-                    onTextChanged: ctxObject.edited("to", text)
+                    onTextChanged: ctxObjectApproveTx.edited("to", text)
                 }
             }
         }
@@ -225,12 +225,12 @@ Item {
                     y: 7
                     width: parent.width - 8
                     height: parent.height - 12
-                    text: ctxObject.value
+                    text: ctxObjectApproveTx.value
                     font.pixelSize: 12
                     horizontalAlignment: Text.AlignLeft
                     font.family: "Courier"
                     verticalAlignment: Text.AlignHCenter
-                    onTextChanged: ctxObject.edited("value", text)
+                    onTextChanged: ctxObjectApproveTx.edited("value", text)
                 }
 
                 ComboBox {
@@ -311,12 +311,12 @@ Item {
                     y: 7
                     width: parent.width - 8
                     height: parent.height - 12
-                    text: ctxObject.gas
+                    text: ctxObjectApproveTx.gas
                     font.pixelSize: 12
                     horizontalAlignment: Text.AlignLeft
                     font.family: "Courier"
                     verticalAlignment: Text.AlignHCenter
-                    onTextChanged: ctxObject.edited("gas", text)
+                    onTextChanged: ctxObjectApproveTx.edited("gas", text)
                 }
             }
         }
@@ -355,12 +355,12 @@ Item {
                     y: 7
                     width: parent.width - 8
                     height: parent.height - 12
-                    text: ctxObject.gasPrice
+                    text: ctxObjectApproveTx.gasPrice
                     font.pixelSize: 12
                     horizontalAlignment: Text.AlignLeft
                     font.family: "Courier"
                     verticalAlignment: Text.AlignHCenter
-                    onTextChanged: ctxObject.edited("gasPrice", text)
+                    onTextChanged: ctxObjectApproveTx.edited("gasPrice", text)
                 }
                 ComboBox {
                     x: 271
@@ -438,12 +438,12 @@ Item {
                     y: 7
                     width: parent.width - 8
                     height: parent.height - 12
-                    text: ctxObject.nonce
+                    text: ctxObjectApproveTx.nonce
                     font.pixelSize: 12
                     horizontalAlignment: Text.AlignLeft
                     font.family: "Courier"
                     verticalAlignment: Text.AlignHCenter
-                    onTextChanged: ctxObject.edited("nonce", text)
+                    onTextChanged: ctxObjectApproveTx.edited("nonce", text)
                 }
             }
         }
@@ -483,10 +483,10 @@ Item {
                     y: 0
                     width: parent.width + 4
                     height: parent.height
-                    text: ctxObject.data
+                    text: ctxObjectApproveTx.data
                     font.pointSize: 12
                     font.family: "Courier"
-                    onTextChanged: ctxObject.edited("data", text)
+                    onTextChanged: ctxObjectApproveTx.edited("data", text)
                 }
             }
         }
@@ -667,7 +667,7 @@ Item {
                 y: 100
                 width: 275
                 height: 303
-                text: ctxObject.diff
+                text: ctxObjectApproveTx.diff
                 font.letterSpacing: -0.2
                 font.family: "Courier"
                 padding: 0
@@ -757,11 +757,11 @@ Item {
                     width: 274
                     height: 16
                     color: "#000000"
-                    text: ctxObject.password
+                    text: ctxObjectApproveTx.password
                     horizontalAlignment: Text.AlignHCenter
                     echoMode: TextInput.Password
                     font.pixelSize: 16
-                    onTextChanged: ctxObject.edited("password", text)
+                    onTextChanged: ctxObjectApproveTx.edited("password", text)
                 }
             }
 
@@ -772,7 +772,7 @@ Item {
                 width: 100
                 height: 36
                 function onClick() {
-                    ctxObject.clicked(2)
+                    ctxObjectApproveTx.clicked(2)
                     pwInput.state = "hide"
                 }
 
@@ -814,7 +814,7 @@ Item {
 
                 function onClick() {
                     pwInput.state = "hide"
-                    ctxObject.edited("password", "")
+                    ctxObjectApproveTx.edited("password", "")
                 }
 
                 contentItem: Text {

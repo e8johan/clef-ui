@@ -197,7 +197,7 @@ func NewTxListUI(clefUi *ClefUI) *TxListUI {
 	c.ClefUI = clefUi
 
 	widget := quick.NewQQuickWidget(nil)
-	widget.RootContext().SetContextProperty("ctxObject", c)
+	widget.RootContext().SetContextProperty("ctxObjectTxList", c)
 	widget.RootContext().SetContextProperty("transactions", c.transactions)
 	widget.RootContext().SetContextProperty("accounts", c.accounts)
 

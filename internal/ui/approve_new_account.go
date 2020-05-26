@@ -106,7 +106,7 @@ func NewApproveNewAccountUI(clefUi *ClefUI) *ApproveNewAccount {
 	c.answerCh = make(chan int)
 
 	widget := quick.NewQQuickWidget(nil)
-	widget.RootContext().SetContextProperty("ctxObject", c)
+	widget.RootContext().SetContextProperty("ctxObjectApproveNewAccount", c)
 	widget.SetSource(core.NewQUrl3("qrc:/qml/approve_new_account.qml", 0))
 	widget.SetResizeMode(quick.QQuickWidget__SizeRootObjectToView)
 	widget.Hide()

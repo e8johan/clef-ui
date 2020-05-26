@@ -60,7 +60,7 @@ Item {
                     y: 7
                     width: parent.width - 8
                     height: parent.height - 12
-                    text: ctxObject.from
+                    text: ctxObjectApproveSignData.from
                     readOnly: true
                     font.family: "Courier"
                     horizontalAlignment: Text.AlignLeft
@@ -75,7 +75,7 @@ Item {
                 y: 6
                 width: 36
                 height: 36
-                source: ctxObject.fromSrc
+                source: ctxObjectApproveSignData.fromSrc
             }
 
 
@@ -86,10 +86,10 @@ Item {
             x: 0
             y: 625
             onApprove: {
-                ctxObject.approve()
+                ctxObjectApproveSignData.approve()
             }
             onReject: {
-                ctxObject.reject()
+                ctxObjectApproveSignData.reject()
             }
 
         }
@@ -129,7 +129,7 @@ Item {
                     y: 0
                     width: parent.width + 4
                     height: parent.height
-                    text: ctxObject.message
+                    text: ctxObjectApproveSignData.message
                     font.pointSize: 12
                     font.family: "Courier"
                     readOnly: true
@@ -171,7 +171,7 @@ Item {
                     y: 0
                     width: parent.width + 4
                     height: parent.height
-                    text: ctxObject.rawData
+                    text: ctxObjectApproveSignData.rawData
                     font.family: "Courier"
                     font.pointSize: 12
                     readOnly: true
@@ -213,7 +213,7 @@ Item {
                     y: 0
                     width: parent.width + 4
                     height: parent.height
-                    text: ctxObject.hash
+                    text: ctxObjectApproveSignData.hash
                     wrapMode: Text.WrapAnywhere
                     font.family: "Courier"
                     font.pointSize: 12
@@ -300,11 +300,11 @@ Item {
                     width: 274
                     height: 16
                     color: "#000000"
-                    text: ctxObject.password
+                    text: ctxObjectApproveSignData.password
                     horizontalAlignment: Text.AlignHCenter
                     echoMode: TextInput.Password
                     font.pixelSize: 16
-                    onTextChanged: ctxObject.edited("password", text)
+                    onTextChanged: ctxObjectApproveSignData.edited("password", text)
                 }
             }
 
@@ -315,7 +315,7 @@ Item {
                 width: 100
                 height: 36
                 function onClick() {
-                    ctxObject.clicked(2)
+                    ctxObjectApproveSignData.clicked(2)
                     pwInput2.state = "hide"
                 }
 
@@ -357,7 +357,7 @@ Item {
 
                 function onClick() {
                     pwInput2.state = "hide"
-                    ctxObject.edited("password", "")
+                    ctxObjectApproveSignData.edited("password", "")
                 }
 
                 contentItem: Text {

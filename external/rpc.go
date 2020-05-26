@@ -56,7 +56,7 @@ func (c *clefUIAPI) ShowInfo(message core.Message) {
 	c.ui.ErrorDialog <- text
 }
 
-func (c *clefUIAPI) OnUserInputrequest(message core.UserInputRequest) (*core.UserInputResponse, error) {
+func (c *clefUIAPI) OnInputRequired(message core.UserInputRequest) (*core.UserInputResponse, error) {
 	response, err := c.ui.RequestUserInput(message.Title, message.Prompt, message.IsPassword)
 	if err != nil {
 		return nil, err

@@ -102,7 +102,7 @@ func NewApproveSignDataUI(clefUi *ClefUI) *ApproveSignDataUI {
 
 	widget := quick.NewQQuickWidget(nil)
 
-	widget.RootContext().SetContextProperty("ctxObject", c)
+	widget.RootContext().SetContextProperty("ctxObjectApproveSignData", c)
 	widget.SetSource(core.NewQUrl3("qrc:/qml/approve_sign_data.qml", 0))
 	widget.SetResizeMode(quick.QQuickWidget__SizeRootObjectToView)
 	widget.Hide()

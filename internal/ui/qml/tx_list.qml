@@ -39,7 +39,7 @@ Item {
                 width: 60
                 height: 60
                 z: 1
-                source: ctxObject.selectedSrc
+                source: ctxObjectTxList.selectedSrc
                 //                source: "./identicon.png"
             }
 
@@ -161,7 +161,7 @@ Item {
                         height: parent.height
                         hoverEnabled: true
                         cursorShape: Qt.PointingHandCursor
-                        onClicked: ctxObject.clicked(index)
+                        onClicked: ctxObjectTxList.clicked(index)
                         onHoveredChanged: containsMouse ? rectangle2.state = "hover" : rectangle2.state = "normal"
                         onPressed: rectangle2.state = "active"
                         onReleased: containsMouse ? rectangle2.state = "hover" : rectangle2.state = "normal"

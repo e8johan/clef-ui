@@ -201,7 +201,7 @@ func NewApproveListingUI(clefUi *ClefUI) *ApproveListingUI {
 	})
 
 	widget := quick.NewQQuickWidget(nil)
-	widget.RootContext().SetContextProperty("ctxObject", ctx)
+	widget.RootContext().SetContextProperty("ctxObjectApproveListing", ctx)
 	widget.RootContext().SetContextProperty("accounts", ctx.accounts)
 	widget.SetSource(core.NewQUrl3("qrc:/qml/approve_listing.qml", 0))
 	widget.SetStyleSheet("margin: 0;")

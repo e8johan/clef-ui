@@ -12,8 +12,9 @@ import (
 	"github.com/ethereum/go-ethereum/common"
 	"github.com/ethereum/go-ethereum/common/hexutil"
 	core2 "github.com/ethereum/go-ethereum/signer/core"
+
 	"github.com/therecipe/qt/core"
-	"github.com/therecipe/qt/quick"
+	"github.com/therecipe/qt/qml"
 )
 
 const (
@@ -28,8 +29,7 @@ type diff struct {
 	edited   string
 }
 
-type ApproveTxUI struct {
-	UI            *quick.QQuickWidget
+type ApproveTxContext struct {
 	ContextObject *ApproveTxCtx
 }
 
@@ -376,18 +376,17 @@ func compareTransactions(o core2.SendTxArgs, n core2.SendTxArgs) []diff {
 	return diffs
 }
 
-func NewApproveTxUI(clefUi *ClefUI) *ApproveTxUI {
+func NewApproveTxUI(rootContext *qml.QQmlContext, clefUi *ClefUI) *ApproveTxContext {
 	c := NewApproveTxCtx(nil)
 	c.ClefUI = clefUi
 	c.answerCh = make(chan int)
 
-	widget := quick.NewQQuickWidget(nil)
-	widget.RootContext().SetContextProperty("ctxObject", c)
-	widget.SetSource(core.NewQUrl3("qrc:/qml/approve_tx.qml", 0))
-	widget.SetResizeMode(quick.QQuickWidget__SizeRootObjectToView)
-	widget.Hide()
-	return &ApproveTxUI{
-		UI:            widget,
+// 	widget := quick.NewQQuickWidget(nil)
+    rootContext.SetContextProperty("ctxObjectApproveTx", c)
+// 	widget.SetSource(core.NewQUrl3("qrc:/qml/approve_tx.qml", 0))
+// 	widget.SetResizeMode(quick.QQuickWidget__SizeRootObjectToView)
+// 	widget.Hide()
+	return &ApproveTxContext{
 		ContextObject: c,
 	}
 

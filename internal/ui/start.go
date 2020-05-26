@@ -8,7 +8,6 @@ import (
 	core2 "github.com/ethereum/go-ethereum/signer/core"
 
 	"github.com/therecipe/qt/core"
-	"github.com/therecipe/qt/gui"
 	"github.com/therecipe/qt/qml"
 	"github.com/therecipe/qt/quick"
 	"github.com/therecipe/qt/quickcontrols2"
@@ -51,7 +50,7 @@ type ClefUI struct {
 	ErrorDialog     chan string
 
 	approvesigndata   *quick.QQuickWidget
-	approvetx         *ApproveTxUI
+	approvetx         *ApproveTxContext
 	approvelisting    *ApproveListingUI
 	approvenewaccount *ApproveNewAccount
 	txlist            *quick.QQuickWidget
@@ -61,7 +60,7 @@ type ClefUI struct {
 func (c *ClefUI) hideAll() {
 	c.approvesigndata.Hide()
 	c.approvelisting.UI.Hide()
-	c.approvetx.UI.Hide()
+	// c.approvetx.UI.Hide()
 	c.approvenewaccount.UI.Hide()
 	c.txlist.Hide()
 	// c.login.Hide()
@@ -108,7 +107,7 @@ func (msg *ApproveTxRequest) handle(ui *ClefUI) {
 
 	co.SetTransaction(msg.Params.Transaction)
 	co.ClickResponse(msg.ResponseCh)
-	ui.approvetx.UI.Show()
+	// TODO ui.approvetx.UI.Show()
 }
 
 func (msg *ApproveNewAccountRequest) handle(ui *ClefUI) {
@@ -121,18 +120,21 @@ func (msg *ApproveNewAccountRequest) handle(ui *ClefUI) {
 }
 
 func (c *ClefUI) Start() {
-	gui.QGuiApplication_Exec()
+	widgets.QApplication_Exec()
 }
 
 func NewClefUI(ctx context.Context, uiClose chan bool, readyToStart chan string) *ClefUI {
 	c := &ClefUI{}
 
 	core.QCoreApplication_SetAttribute(core.Qt__AA_EnableHighDpiScaling, true)
-	app := gui.NewQGuiApplication(len(os.Args), os.Args)
+	app := widgets.NewQApplication(len(os.Args), os.Args)
 	quickcontrols2.QQuickStyle_SetStyle("Material")
 	engine := qml.NewQQmlApplicationEngine(nil)
 
 	NewLogin(engine.RootContext(), readyToStart)
+    
+    approvetx := NewApproveTxUI(engine.RootContext(), c)
+    c.approvetx = approvetx
 
 	// engine.Load(core.NewQUrl3("qrc:/qml/main.qml", 0))
 	engine.Load(core.NewQUrl3("internal/ui/qml/main.qml", 0))

@@ -20,7 +20,7 @@ Item {
             x: 0
             y: 0
             onBack: {
-                ctxObject.back()
+                ctxObjectApproveListing.back()
             }
 
         }
@@ -67,7 +67,7 @@ Item {
                 ListView {
                     Connections
                     {
-                        target: ctxObject
+                        target: ctxObjectApproveListing
                         onTriggerUpdate: {
                             accounts.callbackFromQml()
 
@@ -96,7 +96,7 @@ Item {
                                 font.capitalization: Font.MixedCase
                                 font.family: "Courier"
                                 checked: selected
-                                onCheckStateChanged: ctxObject.onCheckStateChanged(index, checked)
+                                onCheckStateChanged: ctxObjectApproveListing.onCheckStateChanged(index, checked)
                             }
                             Text {
                                 text: address
@@ -117,10 +117,10 @@ Item {
             x: 0
             y: 625
             onApprove: {
-                ctxObject.approve()
+                ctxObjectApproveListing.approve()
             }
             onReject: {
-                ctxObject.reject()
+                ctxObjectApproveListing.reject()
             }
         }
     }

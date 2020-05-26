@@ -61,8 +61,8 @@ Item {
                     font.pixelSize: 12
                     echoMode: TextInput.Password
                     passwordMaskDelay: 1000
-                    text: ctxObject.password
-                    onTextChanged: ctxObject.passwordEdited(text)
+                    text: ctxObjectApproveNewAccount.password
+                    onTextChanged: ctxObjectApproveNewAccount.passwordEdited(text)
                 }
             }
 
@@ -74,10 +74,10 @@ Item {
             x: 0
             y: 625
             onApprove: {
-                ctxObject.approve()
+                ctxObjectApproveNewAccount.approve()
             }
             onReject: {
-                ctxObject.reject()
+                ctxObjectApproveNewAccount.reject()
             }
         }
 
@@ -149,8 +149,8 @@ Item {
                     verticalAlignment: Text.AlignHCenter
                     echoMode: TextInput.Password
                     passwordMaskDelay: 1000
-                    text: ctxObject.confirmPassword
-                    onTextChanged: ctxObject.confirmPasswordEdited(text)
+                    text: ctxObjectApproveNewAccount.confirmPassword
+                    onTextChanged: ctxObjectApproveNewAccount.confirmPasswordEdited(text)
                 }
             }
         }

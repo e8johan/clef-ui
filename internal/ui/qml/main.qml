@@ -13,6 +13,11 @@ ApplicationWindow {
     ClefUI.Login {
         anchors.fill: parent
     }
+    
+    Loader {
+        source: "approve_tx.qml"
+        visible: false
+    }
 
 //    ClefUI.BackButton {
 //        id: backButton
